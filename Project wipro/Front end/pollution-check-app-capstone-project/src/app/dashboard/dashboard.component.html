@@ -1,0 +1,171 @@
+<div id="container">
+<mat-toolbar color="primary">
+  <span class="logo"><a mat-icon-button routerLink="/"><img src=".././../assets/logo.png"
+        alt="logo">Pollution</a></span>
+  <div class="footer">Check App</div>
+  <span class="example-space"></span>
+  <!-- <a mat-icon-button routerLink="/login"><i class="fa fa-sign-out" aria-hidden="true">Logout</i></a> -->
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>{{username}}</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>favorite</mat-icon>
+      <span mat-icon-button routerLink="/wishlist">Wishlist</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>settings_power</mat-icon>
+      <span mat-icon-button (click)="logOut()">Logout</span>
+    </button>
+  </mat-menu>
+
+</mat-toolbar>
+
+<!--  (ngSubmit)="onSubmit(loginForm) -->
+
+<form *ngIf="!isAdvanceSearch" class="cityName-form" #loginForm="ngForm" >
+  <div style="width: 50rem;">
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label style="color: #000;">City Name</mat-label>
+    <input name="cityName" #cityName="ngModel" [(ngModel)]="selectedCityName" required placeholder="Ex. Pune, Delhi" (ngModelChange)="search($event)"
+      type="text" matInput>
+      
+    <mat-error *ngIf="!cityName.dirty && cityName.touched">
+      City name is <strong>required</strong>
+    </mat-error>
+
+  </mat-form-field>
+  <label for="">
+
+    <div id="cities" style="position: absolute; width: 100%; z-index: 999;">
+      <ul *ngIf="cityNames.length > 0">
+        <li *ngFor="let singleCity of cityNames" (click)="onSelect(singleCity)">
+          <mat-icon> place</mat-icon>
+          {{ singleCity }}
+        </li>
+      </ul>
+    </div>
+  </label>
+</div>
+  <button type="submit" mat-stroked-button color="warn" (click)="showResult(0)">Show result</button>
+</form>
+
+<mat-stepper *ngIf="isAdvanceSearch" id="search-stepper" linear #stepper>
+  <mat-step [stepControl]="countryFormControl" errorMessage="Name is required.">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Select Country</ng-template>
+
+      <mat-form-field required req class="example-chip-list" appearance="fill">
+        <mat-label>Choose a country</mat-label>
+        <mat-chip-list [formControl]="countryFormControl" #countriesList aria-label="Country selection">
+          <mat-chip *ngFor="let country of selectedCountry" (removed)="remove(country,'country')">
+            {{country}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input placeholder="" #countryInput [formControl]="countryFormControl" [matAutocomplete]="auto1"
+            [matChipInputFor]="countriesList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event,'country')">
+        </mat-chip-list>
+        <mat-autocomplete #auto1="matAutocomplete" (optionSelected)="selected($event,'country')">
+          <mat-option *ngFor="let country of filteredCountries | async" [value]="country">
+            {{country}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="stateFormControl" errorMessage="Address is required.">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Select State</ng-template>
+
+      <mat-form-field required req class="example-chip-list" appearance="fill">
+        <mat-label>Choose a state</mat-label>
+        <mat-chip-list [formControl]="stateFormControl" #statesList aria-label="State selection">
+          <!-- <mat-chip *ngFor="let state of selectedState" (removed)="remove(state,'state')"> -->
+          <mat-chip *ngFor="let state of selectedState" (removed)="remove(state,'state')">
+            {{state}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input placeholder="" #stateInput [formControl]="stateFormControl" [matAutocomplete]="auto2"
+            [matChipInputFor]="statesList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event,'state')">
+        </mat-chip-list>
+        <!-- <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event,'state')"> -->
+        <mat-autocomplete #auto2="matAutocomplete" (optionSelected)="selected($event,'state')">
+          <mat-option *ngFor="let state of filteredStates | async" [value]="state">
+            {{state}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="cityFormControl" errorMessage="Address is required.">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Select City</ng-template>
+
+      <mat-form-field required req class="example-chip-list" appearance="fill">
+        <mat-label>Choose a city</mat-label>
+        <mat-chip-list [formControl]="cityFormControl" #citiesList aria-label="City selection">
+          <mat-chip *ngFor="let city of selectedCity" (removed)="remove(city,'city')">
+            {{city}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+          <input placeholder="" #cityInput [formControl]="cityFormControl" [matAutocomplete]="auto3"
+            [matChipInputFor]="citiesList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+            (matChipInputTokenEnd)="add($event,'city')">
+        </mat-chip-list>
+        <mat-autocomplete #auto3="matAutocomplete" (optionSelected)="selected($event,'city')">
+          <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+            {{city}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-stroked-button color="warn" (click)="showResult(1)">Show result</button>
+      <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+      <button mat-button (click)="stepper.reset()" (click)="resetForm()">Reset</button>
+
+    </div>
+  </mat-step>
+</mat-stepper>
+
+<a ></a>
+<button style="margin: 0rem 4rem;" mat-flat-button color="accent" (click)="switchingSearchMode()">{{isAdvanceSearch?"↩ Back to simple search":"Advanced Search"}}</button>
+
+<app-result-card *ngIf="(outputData.country!=null && outputData.city!=null && outputData.state!=null) || (outputData.cordinates.lat!=null && outputData.cordinates.lon!=null)"
+  [inputData]="outputData"></app-result-card>
+
+</div>

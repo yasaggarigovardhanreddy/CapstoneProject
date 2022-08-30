@@ -1,0 +1,37 @@
+
+
+.full-width {
+    width: 100%;
+}
+
+#scene{
+    background-image: url("../../assets/pexels-pixabay-221012.jpg");
+    background-position: center;
+    width: 99.1vw;
+    height: 96vh;
+    background-size: cover;
+}
+
+#passWrap{
+    display: flex;
+    align-items: center;
+}
+.sidelogo img{
+    width: 20rem;
+}
+.example-card{
+    width: 430px;
+}
+/* .mat-simple-snack-bar-content{
+    color: red;
+} */
+/* <snack-bar-container class="mat-snack-bar-container ng-tns-c115-2 ng-trigger ng-trigger-state mat-snack-bar-center ng-star-inserted" style="transform: scale(1); opacity: 1;"><div class="ng-tns-c115-2" aria-live="assertive"><div class="ng-tns-c115-2"><simple-snack-bar class="mat-simple-snackbar ng-star-inserted">
+
+
+<span class="mat-simple-snack-bar-content">hello</span>
+
+<div class="mat-simple-snackbar-action ng-star-inserted"><button mat-button="" class="mat-focus-indicator mat-button mat-button-base"><span class="mat-button-wrapper">click</span><span matripple="" class="mat-ripple mat-button-ripple" ng-reflect-disabled="false" ng-reflect-centered="false" ng-reflect-trigger="[object HTMLButtonElement]"></span><span class="mat-button-focus-overlay"></span></button></div><!--bindings={
+    "ng-reflect-ng-if": "true"
+  }--></simple-snack-bar><!--bindings={
+    "ng-reflect-portal": ""
+  }--></div></div></snack-bar-container> */

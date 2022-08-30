@@ -1,0 +1,31 @@
+server:
+    port: 8992
+
+      
+      
+spring :
+    application:
+       name: api-gateway
+    could:
+       gateway:
+          routes:
+            - id: WishListService
+              uri: lb://WishListService
+              predicates:
+                 - path = /api/v1/fav/**
+            - id: UserAuthService
+              uri: lb://UserAuthService
+              predicates:
+                 - path = /api/v1/auth/**
+                 
+                 
+                 
+eureka:
+    client:
+        register-with-eureka : true
+        fetch-registry : true
+        service-url:
+            default-zone : http://localhost:8761/eureka/
+    instance:
+        hostname : localhost
+            

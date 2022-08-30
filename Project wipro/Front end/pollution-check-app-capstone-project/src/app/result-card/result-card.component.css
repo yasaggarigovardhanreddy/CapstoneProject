@@ -1,0 +1,99 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.example-card {
+    cursor: pointer;
+    max-width: 1200px;
+    height: 497px;
+}
+
+#mainCard {
+    background-position: center;
+    transition: background 0.8s;
+}
+
+#mainCard:hover {
+    background: #bea6d5 radial-gradient(circle, transparent 1%, #bea6d5 1%) center/20000%;
+}
+
+#mainCard:active {
+    background-color: #bea6d5;
+    background-size: 100%;
+    transition: background 0s;
+}
+
+.bookmark {
+    font-size: 50px;
+    position: absolute;
+    right: 33px;
+    top: 12px;
+    cursor: pointer;
+}
+
+.bookmark:hover {
+    text-shadow: 2px 3px 14px whitesmoke;
+}
+
+#bookmark-cancel {
+    font-size: 30px;
+    position: absolute;
+    right: 11px;
+    top: 7px;
+    cursor: pointer;
+    color: #673ab7;
+    /* visibility: hidden; */
+}
+
+hr {
+    width: 100%;
+}
+
+mat-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weatherData {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+mat-card {
+    padding: 24px;
+    width: 360px;
+}
+
+mat-spinner {
+    z-index: 5;
+}
+
+#loadingCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#AQI {
+    color: azure;
+    font-size: 35px;
+    padding: 24px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    text-align: center;
+    font-weight: 500;
+}
+
+mat-card-title-group img {
+    background: #bea6d5;
+    border-radius: 50px;
+    margin-bottom: 7px;
+}
+
+mat-card-title {
+    line-height: 25px;
+}

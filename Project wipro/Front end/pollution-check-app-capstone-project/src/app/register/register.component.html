@@ -1,0 +1,81 @@
+
+<div id="scene" class="bootstrap-wrapper vertical">
+  <div class="container">
+    <div class="row" style="justify-content: center;">
+      <div style="margin-top: 20px;" class="row" style="justify-content: space-around; margin-top: 1rem;">
+        <mat-card class="sidelogo">
+          <img src="../././../assets/register logo.png" alt="logo">
+        </mat-card>
+        <mat-card class="example-card">
+          <mat-card-title style="text-align:center;"><i>Pollution check App</i></mat-card-title>
+          <mat-card-subtitle>Welcome New User!</mat-card-subtitle>
+          <mat-card-title style="margin-bottom: 30px;">Register Here</mat-card-title>
+          <mat-card-content>
+            <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input name="email" #email="ngModel" [(ngModel)]="credentials.email"
+                  pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$" type="text" required matInput>
+                <mat-error *ngIf="!email.dirty && email.touched">
+                  Email is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="!email.valid && email.dirty">
+                  Enter a <strong>valid email</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Username</mat-label>
+                <input name="username" #userName="ngModel" [(ngModel)]="credentials.userName" minlength="4" required
+                  type="text" matInput>
+                <mat-error *ngIf="!userName.dirty && userName.touched">
+                  Username is <strong>required</strong>
+                </mat-error>
+                <mat-error *ngIf="!userName.valid && userName.dirty">
+                  Username should have atleast <strong>4 characters</strong>
+                </mat-error>
+              </mat-form-field>
+
+              <div id="passWrap">
+                <mat-form-field style="margin-bottom: 20px;" class="full-width" appearance="outline">
+                  <mat-label>Password</mat-label>
+                  <input name="password" #password="ngModel" [(ngModel)]="credentials.password" required
+                    pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$" [type]="showPass ? 'text' : 'password'" matInput>
+                    <button mat-icon-button matSuffix (click)="showPass = !showPass" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="showPass">
+                      <mat-icon>{{showPass ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                  <mat-error *ngIf="!password.dirty && password.touched">
+                    Password is <strong>required</strong>
+                  </mat-error>
+                  <mat-hint>
+                    Minimum six characters, at least one uppercase letter, one lowercase letter and one number
+                  </mat-hint>
+                  <mat-error *ngIf="!password.valid && password.dirty">
+                    Minimum six characters, {{password.valid}} at least one uppercase letter, one lowercase letter and
+                    one number
+                  </mat-error>
+                </mat-form-field>
+                <!-- <mat-icon id="passEye" (click)="showHidePass()" style="margin-left: 8px; margin-bottom: 30px;" aria-hidden="false">remove_red_eye</mat-icon> -->
+              </div>
+
+              <mat-divider inset></mat-divider>
+
+              <button [disabled]="!registerForm.form.valid" style="margin-left: 10px; margin-top: 20px;" type="submit"
+                mat-raised-button color="primary">Register</button>
+              <button style="margin-left: 20px;" type="reset" mat-raised-button color="accent">Reset</button>
+            </form>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button routerLink="/login">Have an account? Log in</button>
+          </mat-card-actions>
+          <mat-card-footer>
+            <mat-progress-bar></mat-progress-bar>
+          </mat-card-footer>
+        </mat-card>
+<!-- 
+        {{registerForm.value | json}} -->
+      </div>
+    </div>
+  </div>
+</div>

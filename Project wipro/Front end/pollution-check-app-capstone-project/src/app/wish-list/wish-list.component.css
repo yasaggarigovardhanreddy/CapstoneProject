@@ -1,0 +1,46 @@
+.example-space {
+    flex: 1 1 auto;
+}
+
+.logo img,
+.logo a {
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+}
+
+.footer {
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+.lengend-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#legend {
+    margin: -9px;
+    display: flex;
+    border-radius: 10px;
+    padding: 10px 13px;
+    font-size: 15px;
+    background: red;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#legend span{
+    margin: 3px;
+}
+.nodatamsg img{
+    width: 600px;
+    height: 400px;
+}
+.nodatamsg{
+    text-align: center;
+    font-size: x-large;
+}

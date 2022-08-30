@@ -1,0 +1,52 @@
+<div (mouseenter)='showCancelIcon()' (mouseleave)="hideCancelIcon()" class="container">
+
+    <mat-card *ngIf="isLoadingData" id="loadingCard" class="example-card">
+        <mat-spinner></mat-spinner>
+    </mat-card>
+    <mat-card *ngIf="!isLoadingData" id="mainCard" class="example-card"
+        [ngStyle]="{'width': this.isFullMode && '1100px','background-color': (this.resultData?.city != undefined && this.resultData?.country != undefined && this.resultData?.state) && this.getAqiRanges(this.resultData.current.pollution.aqius).bg}">
+        <h1 *ngIf="resultData===undefined && isFullMode===false">API ERROR! Too Many Requests!! Please Try Again
+        </h1>
+        <mat-icon *ngIf="!isBookmarked && isFullMode" (click)="addBookmark()" color="primary" class="bookmark">
+            favorite_border</mat-icon>
+        <mat-icon *ngIf="isBookmarked && isFullMode" (click)="removeBookmark()" color="primary" class="bookmark">
+            favorite</mat-icon>
+        <mat-icon id="bookmark-cancel" *ngIf="isBookmarked && !isFullMode && showCancel &&resultData!==undefined"
+            (click)="removeBookmark()">cancel</mat-icon>
+        <mat-card-title-group [ngStyle]="{'justify-content': this.isFullMode && 'space-around'}"
+            *ngIf="resultData?.city!=undefined && resultData?.country!=undefined && resultData?.state!=undefined && resultData.location!=undefined">
+            <mat-card-title>{{resultData?.city}}, {{resultData?.state}}, {{resultData?.country}}</mat-card-title>
+            <mat-card-subtitle>({{resultData.location.coordinates[0]}},{{resultData.location.coordinates[1]}})
+            </mat-card-subtitle>
+            <img [ngStyle]="{'margin-right:': this.isFullMode && '25px'}" mat-card-sm-image src={{weatherIconUrl}}>
+        </mat-card-title-group>
+        <mat-card-content *ngIf="resultData?.current!=undefined">
+            <hr>
+            <h2>Air Quality Index (US AQI):</h2>
+            <span id="AQI"
+                [ngStyle]="{
+                'width': this.isFullMode && '375px',
+                'font-size': this.isFullMode && '50px','background-color':  (this.resultData?.city != undefined && this.resultData?.country != undefined && this.resultData?.state) && this.getAqiRanges(this.resultData.current.pollution.aqius).tag }">
+                {{resultData.current.pollution.aqius}}
+                <h2 style="margin: 10px 0px 0px 0px; color: azure;">(
+                    {{getAqiRanges(resultData.current.pollution.aqius).label}} )</h2>
+            </span>
+            <hr>
+            <div class="weatherData" [ngStyle]="{'justify-content': this.isFullMode && 'space-around'}">
+                <h3>Temperature </h3>
+                <h3><strong>{{resultData.current.weather.tp}}°C</strong></h3>
+            </div>
+            <hr>
+            <div class="weatherData" [ngStyle]="{'justify-content': this.isFullMode && 'space-around'}">
+                <h3>Humidity </h3>
+                <h3><strong>{{resultData.current.weather.hu}}%</strong></h3>
+            </div>
+            <hr>
+            <div class="weatherData" [ngStyle]="{'justify-content': this.isFullMode && 'space-around'}">
+                <h3>Pressure </h3>
+                <h3><strong>{{resultData.current.weather.pr}} mb</strong></h3>
+            </div>
+
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,69 @@
+<mat-toolbar color="primary">
+  <span class="logo"><a mat-icon-button routerLink="/"><img src=".././../assets/logo.png"
+        alt="logo">Pollution</a></span>
+  <div class="footer">Check App</div>
+  <span class="example-space"></span>
+  <!-- <a mat-icon-button routerLink="/login"><i class="fa fa-sign-out" aria-hidden="true">Logout</i></a> -->
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>{{username}}</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>dashboard</mat-icon>
+      <span mat-icon-button routerLink="/dashboard">Dashboard</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>settings_power</mat-icon>
+      <span mat-icon-button (click)="logOut()">Logout</span>
+    </button>
+  </mat-menu>
+
+</mat-toolbar>
+<hr>
+<br>
+<div class="lengend-container">
+  <h3>US AQI</h3>
+  <div id="legend" style="background-color: #a8e05f;">
+    <span>Good</span>
+    <span> 0 - 50 </span>
+  </div>
+  <div id="legend" style="background-color: #fdd64b;">
+    <span>Moderate</span>
+    <span> 51 - 100 </span>
+  </div>
+  <div id="legend" style="background-color: #ff9b57;">
+    <span>Unhealthy for Sensitive Groups</span>
+    <span> 101 - 150 </span>
+  </div>
+  <div id="legend" style="background-color: #fe6a69;">
+    <span>Unhealthy</span>
+    <span> 151 - 200 </span>
+  </div>
+  <div id="legend" style="background-color: #a97abc;">
+    <span>Very Unhealthy</span>
+    <span> 201 - 300 </span>
+  </div>
+  <div id="legend" style="background-color: #a87383;">
+    <span>Hazardous</span>
+    <span> 300+ </span>
+  </div>
+</div>
+<br>
+<hr>
+<div class="container">
+  <div class="row" style="
+  display: flex; flex-wrap: wrap; justify-content: center;">
+    <mat-card *ngIf="wishlist.length===0" class="nodatamsg">
+      <mat-card-subtitle>Oop's No Wishlist's Yet</mat-card-subtitle>
+      <img src="../../assets/no data.png" alt="no data found">
+    </mat-card>
+    <app-result-card *ngFor="let wishCard of wishlist" [removeCallbackFunction]="removeWishListCard" [inputData]="wishCard" [isFullMode]="false" [isBookmarked]="true">
+      {{wishCard[0]}}
+    </app-result-card>
+    
+  </div>
+</div>

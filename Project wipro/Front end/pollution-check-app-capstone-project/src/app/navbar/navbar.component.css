@@ -1,0 +1,12 @@
+.example-space{
+    flex:1 1 auto;
+}
+.logo img,.logo a{
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+}
+.footer{
+    font-size: 12px;
+    margin-top: 30px;
+}

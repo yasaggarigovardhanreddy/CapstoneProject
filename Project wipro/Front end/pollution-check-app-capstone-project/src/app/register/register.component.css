@@ -1,0 +1,22 @@
+.full-width{
+    width: 100%;
+}
+
+#passWrap{
+    display: flex;
+    align-items: center;
+}
+
+#scene{
+    background-image: url("../../assets/pexels-pixabay-221012.jpg");
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    background-size:auto;
+    overflow: hidden;
+}
+
+.sidelogo img{
+    width: 22rem;
+    padding-right: 20px;
+}

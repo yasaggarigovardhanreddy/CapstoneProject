@@ -1,0 +1,78 @@
+.example-chip-list {
+  width: 100%;
+}
+
+.example-space {
+  flex: 1 1 auto;
+}
+
+.logo img,
+.logo a {
+  height: 40px;
+  width: 40px;
+  font-size: 20px;
+}
+
+.footer {
+  font-size: 12px;
+  margin-top: 30px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.cityName-form {
+  margin: 2rem 3rem;
+  background-color: #dbcbcb85;;
+  padding: 2rem 5rem;
+  border-radius: 10px;
+  min-width: 21rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  backdrop-filter: blur(5px);
+  
+}
+
+#cities {
+  position: inherit !important;
+
+}
+
+#cities ul {
+  list-style: none;
+  background-color: #bea6d5;
+  padding: 5px;
+  margin: 0px;
+}
+
+#cities li {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid black;
+  padding: 5px;
+  cursor: pointer;
+}
+
+#cities li:hover {
+  background-color: #ffd740;
+}
+
+#container {
+  /* background-image: url("../../assets/bakhrom-tursunov-GmqezLxud8g-unsplash.jpg"); */
+  /* background-image: url("https://assets.nrdc.org/sites/default/files/styles/3up_promo/public/sciencespotlight_fossilfuelairpollution_2_1200px.jpg?itok=27Kmn1v2"); */
+  background-image: url("../../assets/dashboard.jpg");
+  background-position: center;
+  height: 100vh;
+  background-size: cover;
+}
+
+#search-stepper {
+  background-color: #dbcbcb85 !important;
+  margin: 25px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+}
